@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Course from './Course';
 import update from 'immutability-helper';
-import CourseForm from './CourseForm'
+import CourseForm from './CourseForm';
+import { MDBIcon } from "mdbreact";
 
 class CoursesContainer extends Component {
 
@@ -38,6 +39,7 @@ addNewCourse = () => {
         capacity: 0,
         address: '',
         liked: false,
+        category: '',
       }
     }
   )
@@ -60,7 +62,7 @@ updateCourse = (course) => {
   const courses = update(this.state.courses, {
     [courseIndex]: {$set: course }
   })
-  this.setState({courses: courses, notification: 'All changes saved'})
+  this.setState({courses: courses, notification: 'All changes saved !', editingCourseId: null})
   console.log(this.state.notification)
 }
 
@@ -68,12 +70,12 @@ updateCourse = (course) => {
 
 enableEditing = (id) => {
 
-  this.setState({ editingCourseId: id})
+  this.setState({ editingCourseId: id, notification: null})
 }
 
 
 likedHandler = (c) =>{
-  const Index = this.state.courses.findIndex(x => x.id === c.id)
+
   const courseIndex = this.state.courses.find(x => x.id === c.id)
   courseIndex.liked = !courseIndex.liked
    const course = {
@@ -113,20 +115,48 @@ deleteHandler = (id) => {
 
 
   render() {
-      this.state.courses.map((c) => {
-      console.log(c.liked)
-    })
+    let doneCount = 0;
+     let urgentCount =0;
+     let semiUrgentCount=0;
+     let taskCount = this.state.courses.length
+     console.log(this.state.courses.length)
+
+     this.state.courses.map((c) => {
+        if  (c.liked) {
+          doneCount++
+        } else {
+          if (c.capacity === 3) {
+          urgentCount++ }
+          else if  (c.capacity === 2) {
+            semiUrgentCount++
+          }
+        }})
+     let ratio = (doneCount + 1) /taskCount * 100
+
+
 
     return (
       <div>
 
+      <div className="header">
+      <div className="h blue"> <h3> {doneCount + 1} </h3> <p> tasks done </p>  </div>
+      <div className="h pink">  <h3>  {urgentCount} </h3>  <p> urgent tasks todo </p> </div>
+      <div className="h yellow"> <h3> {semiUrgentCount} </h3>  <p> semi-urgent tasks todo </p> </div>
+      <div className="h green">  <h3> {ratio} % </h3> <p> ratio completion </p> </div>
+
+       </div>
+      }
+
 
       <button className="newCourseButton" onClick={this.addNewCourse} >
-         New Course
+         ADD A TASK <MDBIcon icon="plus"/>
+
         </button>
         <span className="notification">
           {this.state.notification}
         </span>
+
+
 
         <div className="tiles">
       {this.state.courses.map((c) => {
@@ -143,15 +173,14 @@ deleteHandler = (id) => {
         return( <div className="tile" key={c.id} >
           < Course
           erase={() => this.deleteHandler(c.id)}
-          title={c.title} description={c.description}
+          title={c.title} category={c.category} description={c.description}
           capacity ={c.capacity} address={c.address}
           clicked={() => this.enableEditing(c.id)}
           like ={() => this.likedHandler(c)}
           liked = {c.liked}
 
             />
-          }
-          }
+
 
         </div>
         )

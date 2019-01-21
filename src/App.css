@@ -1,7 +1,10 @@
 .App-header {
   text-align: center;
-  height: 150px;
-  padding: 20px;
+  padding: 10px;
+}
+
+.App-header h1{
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-intro {
@@ -9,28 +12,58 @@
 }
 
 
+
+.grey-container{
+  background-color: #F9F9F9;
+}
+
+.tiles{
+  margin-left: 5%;
+  background-color: #F9F9F9;
+}
 .tile {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   margin: 10px;
-  background: lightyellow;
+  background:#F9F9F9;
   float: left;
-  font-size: 11px;
+  font-family: 'Roboto', sans-serif;
   text-align: left;
   position: relative;
+  border-radius: 5px;
+
 }
 
 
+.tile h4{
+  color: grey;
+  font-size: 20px;
+}
+
+
+p {
+  color: grey;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 14;
+}
+
 .newCourseButton {
-  background: darkblue;
+  background: #3FF5EA;
   color: white;
   border: none;
-  font-size: 18px;
+  border-radius: 5px;
+  font-size: 14px;
   cursor: pointer;
-
+  opacity: 0.6;
   margin-left: 45%;
   margin-bottom: 30px;
   padding:10px;
+}
+
+
+.newCourseButton:hover{
+ opacity:1;
 }
 
 .input {
@@ -52,20 +85,49 @@ textarea {
   font-size: 11px;
 }
 
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+  margin:20px auto;
+}
+
+.h{
+  text-align:center;
+  margin:0px 10px;
+}
+
+.h h3{
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0px;
+}
 
 .notification{
-color: #6EF159;
+color: #A4ED5A;
 padding: 20px 20px;
+top:0px;
+margin-left:45%;
+
 }
 
 
 .deleteButton {
   visibility: hidden;
-  float: right;
+  position:absolute;
+  background-color: white;
+  padding: 5px 10px;
+  top:10px;
+  left: 10px;
   margin: 5px;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
-  color: red;
+  color: grey;
 }
 
 .tile:hover .deleteButton {
@@ -74,15 +136,63 @@ padding: 20px 20px;
 
 .Like{
   position: absolute;
-  bottom: 0;
+right:20px;
+top: -10px;
+font-size: 30px;
 }
 
+.empty:hover{
+  color:#A4ED5A;
+  opacity: 0.4;
+  cursor: pointer;
+}
 
 .empty{
-  color: grey;
+  color: lightgrey;
 }
 
 .full{
-  color:red;
+  color:#A4ED5A;
 }
 
+.full:hover{
+  cursor: pointer;
+}
+
+.blue{
+  color: #3FF5EA;
+}
+
+
+.yellow{
+  color:#F2DD22;
+}
+
+
+.pink{
+  color:#F859FC;
+}
+
+.green{
+  color: #A4ED5A;
+}
+
+.urgence1{
+
+
+  color: #A4ED5A;
+  background-color: rgba(179, 255, 102, 0.3);
+  padding: 10px;
+}
+
+.urgence2{
+color:#F2DD22;
+background: rgba(242, 221, 34, 0.3);
+padding: 10px;
+}
+
+.urgence3{
+  color:#F859FC;
+  background-color: rgba(248, 89, 252, 0.3);
+  padding: 10px;
+}

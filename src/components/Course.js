@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios';
 import { MDBIcon } from "mdbreact";
 
 class  Course extends Component{
@@ -14,27 +13,36 @@ class  Course extends Component{
 
 
   render () {
+    let urgence = "Urgent"
 
-let liked = <p className="empty"> <MDBIcon icon="heart"/> </p>
+    if (this.props.capacity === 2) {
+      urgence = "Semi-urgent"
+    } else if (this.props.capacity === 1) {
+        urgence = "Pas urgent"
+    }
+
+let liked = <p className="check full"> <MDBIcon icon="check"/> </p>
 console.log(this.props.liked)
 if (this.props.liked === false)
- {liked = <p className="full"> <MDBIcon icon="heart"/> </p>}
+ {liked = <p className="check empty"> <MDBIcon icon="check"/> </p>}
 
 
 return (
-  <div className="tile"  >
+  <div >
+  <div className= {"urgence" +this.props.capacity} onClick={this.props.clicked} > {urgence}  </div>
   <span className="deleteButton" onClick={this.props.erase}>
     x
   </span>
-  <button className="Like" onClick={this.props.like}>
+  <div className="Like" onClick={this.props.like}>
                   {liked}
-          </button>
+          </div>
 
     <h4 onClick={this.props.clicked} >{this.props.title} </h4>
+    <p  onClick={this.props.clicked} >{this.props.category}</p>
     <p onClick={this.props.clicked} >{this.props.description}</p>
-    <p> {this.props.capacity}  </p> <MDBIcon icon="camera-retro"/> fa-camera-retro
+
     <p> {this.props.liked} </p>
-    <p onClick={this.props.clicked} >{this.props.address} </p>
+
   </div>
   )
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import update from 'immutability-helper';
+
 
 class CourseForm extends Component {
    constructor(props) {
@@ -9,7 +9,8 @@ class CourseForm extends Component {
       title: this.props.course.title,
       description: this.props.course.description,
       capacity: this.props.course.capacity,
-      address: this.props.course.address,
+      category: this.props.course.category
+      //address: this.props.course.address,
 
     }
   }
@@ -22,7 +23,9 @@ handleBlur = () => {
   const course = {
     title: this.state.title,
     description: this.state.description,
-    address: this.state.address,
+    //address: this.state.address,
+    capacity: this.state.capacity,
+    category: this.state.category
 
   }
 
@@ -56,22 +59,24 @@ handleBlur = () => {
         <form onBlur={this.handleBlur} >
 
 
-            <input className='input' type="text"
+            <p> <input className='input' type="text"
               name="title" placeholder='Enter a Title'
-              value={this.state.title} onChange={this.handleInput} />
-              <input className='input' type="text"
-              name="address" placeholder='Enter an address'
-              value={this.state.address} onChange={this.handleInput} />
-            <textarea className='input' name="description"
+              value={this.state.title} onChange={this.handleInput} /> </p>
+              <label>
+         Category:
+          <select name="category" value={this.state.category} onChange={this.handleInput}>
+            <option value="Professional">Professional</option>
+            <option value="Personnal">Personnal </option>
+            <option value="Leisure">Leisure</option>
+
+          </select>
+        </label>
+            <p> Urgence level <input name="capacity" type='number' placeholder='Urgence level'
+            max={3} min={1} onChange={this.handleInput} value={this.state.capacity} /> </p>
+            <p> <textarea className='input' name="description"
               placeholder='Describe your course'
               value={this.state.description} onChange={this.handleInput}>
-
-              <input className='input' type="text"
-              name="capacity" placeholder='Capacity?'
-              value={this.state.capacity} onChange={this.handleInput} />
-
-
-            </textarea>
+            </textarea></p>
          </form>
 
       </div>
