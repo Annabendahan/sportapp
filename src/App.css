@@ -5,6 +5,15 @@
 
 .App-header h1{
   font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: #4F4F4F;
+}
+
+
+.App-header h2{
+font-size: 20px;
+color:#A39E9E;
 }
 
 .App-intro {
@@ -12,21 +21,23 @@
 }
 
 
-
 .grey-container{
   background-color: #F9F9F9;
+
 }
 
 .tiles{
-  margin-left: 5%;
-  background-color: #F9F9F9;
+  margin-left: 10%;
+  height: 200vh;
 }
+
 .tile {
   height: 250px;
   width: 250px;
   margin: 10px;
-  background:#F9F9F9;
+  background:white;
   float: left;
+  font-size: 14px;
   font-family: 'Roboto', sans-serif;
   text-align: left;
   position: relative;
@@ -35,16 +46,46 @@
 }
 
 
+.tile p {
+padding: 5px 20px;
+font-weight: 500;
+
+}
+
+.modif {
+  border:none;
+  position: absolute;
+  right: 10px;
+  background: #3FF5EA;
+  color: white;
+  opacity: 0.6;
+}
+
+.modif:hover{
+  opacity: 1;
+}
+
+
+.cat{
+  position: absolute;
+  top: 40px;
+  color:#A39E9E;
+  font-weight: 500;
+  font-size: 12px;
+}
+
 .tile h4{
-  color: grey;
+  color: #4F4F4F;
   font-size: 20px;
+  padding: 10px 20px;
+  width: 100px;
 }
 
 
 p {
-  color: grey;
+  color:#4F4F4F;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14;
 }
 
@@ -68,11 +109,31 @@ p {
 
 .input {
   border: 0;
-  background: none;
+  background: #F9F9F9;
+  padding: 5px 10px;
+  border-radius: 10px;
   outline: none;
-  margin-top:10px;
+  color:#4F4F4F;
   width: 140px;
   font-size: 11px;
+  font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+
+}
+
+
+select{
+  background: #F9F9F9;
+  border:none;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+input{
+  background: #F9F9F9;
+  border:none;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
 .input:focus {
@@ -81,8 +142,8 @@ p {
 
 textarea {
   resize: none;
-  height: 90px;
-  font-size: 11px;
+  height: 70px;
+  font-size: 14px;
 }
 
 .header{
@@ -106,6 +167,7 @@ textarea {
   font-size: 30px;
   font-weight: 700;
   margin: 0px;
+
 }
 
 .notification{
@@ -121,13 +183,15 @@ margin-left:45%;
   visibility: hidden;
   position:absolute;
   background-color: white;
+  border: 0.25px solid lightgrey;
   padding: 5px 10px;
-  top:10px;
-  left: 10px;
+  top:-17px;
+  right: -17px;
   margin: 5px;
   font-size: 17px;
   cursor: pointer;
   color: grey;
+  border-radius: 50%;
 }
 
 .tile:hover .deleteButton {
@@ -137,7 +201,7 @@ margin-left:45%;
 .Like{
   position: absolute;
 right:20px;
-top: -10px;
+top: 35px;
 font-size: 30px;
 }
 
@@ -160,17 +224,17 @@ font-size: 30px;
 }
 
 .blue{
-  color: #3FF5EA;
+  color: rgba(53, 249, 238, 0.25);
 }
 
 
 .yellow{
-  color:#F2DD22;
+  color:rgba(63, 245, 234, 0.6);
 }
 
 
 .pink{
-  color:#F859FC;
+  color:#2ADFD4;
 }
 
 .green{
@@ -180,19 +244,67 @@ font-size: 30px;
 .urgence1{
 
 
-  color: #A4ED5A;
-  background-color: rgba(179, 255, 102, 0.3);
+  color: white;
+  background-color: rgba(53, 249, 238, 0.25);
   padding: 10px;
+  font-weight: 700;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .urgence2{
-color:#F2DD22;
-background: rgba(242, 221, 34, 0.3);
+color:white;
+background: rgba(63, 245, 234, 0.6);
 padding: 10px;
+font-weight: 700;
+border-radius: 5px 5px 0px 0px;
 }
 
 .urgence3{
-  color:#F859FC;
-  background-color: rgba(248, 89, 252, 0.3);
+  color:white;
+  background-color: #2ADFD4;
   padding: 10px;
+  font-weight: 700;
+  border-radius: 5px 5px 0px 0px;
 }
+
+
+.Backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+.Modal {
+    position: fixed;
+    color: #4F4F4F;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 3px 10px rgba(187, 187, 187, 0.25);
+    padding: 20px;
+    left: 15%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}
+
+
+.modal-i{
+  font-size: 50px;
+  color: #A4ED5A;
+}
+

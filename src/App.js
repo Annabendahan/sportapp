@@ -7,14 +7,8 @@ class App extends Component {
     return (
       <div className="grey-container">
         <header className="App-header">
-          <h1> <span className="pink">T</span>
-               <span className="green">O</span>
-               <span className="blue">D</span>
-               <span className="yellow">O</span>
-               <span  className="pink">L</span>
-               <span className="green">I</span>
-               <span className="blue">S</span>
-               <span className="yellow">T</span> </h1>
+          <h1> TODOLIST </h1>
+          <h2> GET THINGS DONE </h2>
         </header>
         < CoursesContainer />
       </div>

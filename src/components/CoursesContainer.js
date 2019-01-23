@@ -4,6 +4,8 @@ import Course from './Course';
 import update from 'immutability-helper';
 import CourseForm from './CourseForm';
 import { MDBIcon } from "mdbreact";
+import Modal from './UI/Modal';
+import Aux from './hoc/Aux';
 
 class CoursesContainer extends Component {
 
@@ -12,7 +14,8 @@ class CoursesContainer extends Component {
   this.state = {
     courses: [],
     editingCourseId: null,
-    notification: null
+    notification: null,
+    greetings: false
 
   }
 }
@@ -39,7 +42,7 @@ addNewCourse = () => {
         capacity: 0,
         address: '',
         liked: false,
-        category: '',
+        category: 1,
       }
     }
   )
@@ -91,7 +94,11 @@ likedHandler = (c) =>{
     const courses = update(this.state.courses, {
     [courseIndex]: {$set: course }
   })
+
     this.setState({courses: courses})
+    if (courseIndex.liked) {
+      this.setState({greetings: true})
+    }
   })
   .catch(error => console.log(error))
 }
@@ -109,7 +116,9 @@ deleteHandler = (id) => {
 }
 
 
-
+stopGreetings =()=> {
+  this.setState({greetings: false})
+}
 
 
 
@@ -131,35 +140,10 @@ deleteHandler = (id) => {
             semiUrgentCount++
           }
         }})
-     let ratio = (doneCount + 1) /taskCount * 100
+     let ratio = (doneCount ) /taskCount * 100
 
 
-
-    return (
-      <div>
-
-      <div className="header">
-      <div className="h blue"> <h3> {doneCount + 1} </h3> <p> tasks done </p>  </div>
-      <div className="h pink">  <h3>  {urgentCount} </h3>  <p> urgent tasks todo </p> </div>
-      <div className="h yellow"> <h3> {semiUrgentCount} </h3>  <p> semi-urgent tasks todo </p> </div>
-      <div className="h green">  <h3> {ratio} % </h3> <p> ratio completion </p> </div>
-
-       </div>
-      }
-
-
-      <button className="newCourseButton" onClick={this.addNewCourse} >
-         ADD A TASK <MDBIcon icon="plus"/>
-
-        </button>
-        <span className="notification">
-          {this.state.notification}
-        </span>
-
-
-
-        <div className="tiles">
-      {this.state.courses.map((c) => {
+     let courses = this.state.courses.map((c) => {
       if (this.state.editingCourseId === c.id) {
         return(
           <div className="tile" key={c.id}>
@@ -177,20 +161,65 @@ deleteHandler = (id) => {
           capacity ={c.capacity} address={c.address}
           clicked={() => this.enableEditing(c.id)}
           like ={() => this.likedHandler(c)}
-          liked = {c.liked}
+          liked = {c.liked}/>
+          </div>)
+        }
+      })
 
-            />
+    let coursesDone = [];
+    let coursesTodo = [];
+
+     courses.forEach((c) => {
+       console.log(c.props.children.props.liked);
+      (c.props.children.props.liked) ? coursesDone.push(c) : coursesTodo.push(c)
+     })
+
+     console.log(coursesTodo)
 
 
-        </div>
-        )
-      }})}
 
 
+    return (
+    <div>
+    <button className="newCourseButton" onClick={this.addNewCourse} >
+         ADD A TASK <MDBIcon icon="plus"/>
+      </button> <span className="notification">
+          {this.state.notification}
+        </span>
+        <Modal
+          show={this.state.greetings}
+          modalClosed={this.stopGreetings}>
+          <h2> Task done ! Yeah ! </h2>
+           <div class="modal-i"> <MDBIcon icon="thumbs-up"/> </div>
+        </Modal>
+      <div className="header">
+        <div className="h blue"> <h3> {doneCount} </h3> <p> completed tasks  </p>  </div>
+        <div className="h pink">  <h3>  {urgentCount} </h3>  <p> urgent tasks todo </p> </div>
+        <div className="h yellow"> <h3> {semiUrgentCount} </h3>  <p> semi-urgent tasks todo </p> </div>
+        <div className="h green">  <h3> {ratio} % </h3> <p> ratio of completion </p> </div>
       </div>
-      </div>
-   )
-  }
+
+      <div className= "tiles">
+       {courses}
+       </div>
+
+
+
+
+
+
+
+
+    </div>
+  )
 }
+}
+
+
+
+
+
+
+
 
 export default CoursesContainer;

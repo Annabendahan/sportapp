@@ -29,21 +29,23 @@ if (this.props.liked === false)
 
 return (
   <div >
-  <div className= {"urgence" +this.props.capacity} onClick={this.props.clicked} > {urgence}  </div>
-  <span className="deleteButton" onClick={this.props.erase}>
-    x
-  </span>
-  <div className="Like" onClick={this.props.like}>
-                  {liked}
-          </div>
+    <div className= {"urgence" +this.props.capacity} onClick={this.props.clicked} >
+    {urgence}
+    </div>
+    <span className="deleteButton" onClick={this.props.erase}>
+      <MDBIcon icon="times"/>
+    </span>
+    <div className="Like" onClick={this.props.like}>
+                    {liked}
+            </div>
+      <h4 onClick={this.props.clicked} >{this.props.title} </h4>
+      <p className="cat" onClick={this.props.clicked} >{this.props.category}</p>
+      <p  onClick={this.props.clicked} >{this.props.description}</p>
 
-    <h4 onClick={this.props.clicked} >{this.props.title} </h4>
-    <p  onClick={this.props.clicked} >{this.props.category}</p>
-    <p onClick={this.props.clicked} >{this.props.description}</p>
-
-    <p> {this.props.liked} </p>
+      <p> {this.props.liked} </p>
 
   </div>
+
   )
 
   }

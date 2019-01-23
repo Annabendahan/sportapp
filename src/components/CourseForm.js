@@ -9,7 +9,8 @@ class CourseForm extends Component {
       title: this.props.course.title,
       description: this.props.course.description,
       capacity: this.props.course.capacity,
-      category: this.props.course.category
+      category: this.props.course.category,
+      liked: this.props.course.liked
       //address: this.props.course.address,
 
     }
@@ -55,28 +56,28 @@ handleBlur = () => {
 
 
     return (
-      <div className="tile">
-        <form onBlur={this.handleBlur} >
-
+      <div >
+        <form onSubmit={this.handleBlur} > <input className="modif" type="submit" value="Valider" />
+        <p> Urgence level <input name="capacity" type='number' placeholder='Urgence level'
+            max={3} min={1} onChange={this.handleInput} value={this.state.capacity} /> </p>
 
             <p> <input className='input' type="text"
               name="title" placeholder='Enter a Title'
               value={this.state.title} onChange={this.handleInput} /> </p>
-              <label>
-         Category:
-          <select name="category" value={this.state.category} onChange={this.handleInput}>
-            <option value="Professional">Professional</option>
-            <option value="Personnal">Personnal </option>
-            <option value="Leisure">Leisure</option>
-
-          </select>
+             <label>
+         <p>Category:
+          <select  name="category" value={this.state.category} onChange={this.handleInput}>
+            <option value="PRO">PRO</option>
+            <option value="PERSO">PERSO </option>
+          </select></p>
         </label>
-            <p> Urgence level <input name="capacity" type='number' placeholder='Urgence level'
-            max={3} min={1} onChange={this.handleInput} value={this.state.capacity} /> </p>
+
             <p> <textarea className='input' name="description"
               placeholder='Describe your course'
               value={this.state.description} onChange={this.handleInput}>
             </textarea></p>
+
+
          </form>
 
       </div>
