@@ -31,7 +31,7 @@ handleBlur = () => {
   }
 
   axios.put(
-    `http://localhost:3001/api/v1/courses/${this.props.course.id}`,
+    `/api/courses/${this.props.course.id}`,
     {
       course: course
     })
@@ -66,7 +66,7 @@ handleBlur = () => {
               value={this.state.title} onChange={this.handleInput} /> </p>
              <label>
          <p>Category:
-          <select  name="category" value={this.state.category} onChange={this.handleInput}>
+          <select  name="category" value={this.state.category} onChange={this.handleInput} onClick={this.handleInput}>
             <option value="PRO">PRO</option>
             <option value="PERSO">PERSO </option>
           </select></p>

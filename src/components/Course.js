@@ -35,6 +35,9 @@ return (
     <span className="deleteButton" onClick={this.props.erase}>
       <MDBIcon icon="times"/>
     </span>
+    <span className="modifyButton" onClick={this.props.clicked}>
+      <MDBIcon icon="pen"/>
+    </span>
     <div className="Like" onClick={this.props.like}>
                     {liked}
             </div>
